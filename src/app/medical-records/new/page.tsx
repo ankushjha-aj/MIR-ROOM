@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import DashboardLayout from '@/components/layout/DashboardLayout'
 import { ArrowLeft, Save, X } from 'lucide-react'
 import Link from 'next/link'
 
-export default function NewMedicalRecordPage() {
+function NewMedicalRecordForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -402,5 +402,13 @@ export default function NewMedicalRecordPage() {
         </form>
       </div>
     </DashboardLayout>
+  )
+}
+
+export default function NewMedicalRecordPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <NewMedicalRecordForm />
+    </Suspense>
   )
 }
